@@ -12,6 +12,9 @@ const app = express();
 //set up middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// import routes
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 app.use(express.static('./Develop/public'));
 
 //connect to mongodb
@@ -24,9 +27,7 @@ mongoose.connect(process.env.mongodb_uri || 'mongodb://localhost/fitnessTracker'
     }
 );
 
-// import routes
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
+
 
 //start server
 app.listen(PORT, () => {
