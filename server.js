@@ -12,7 +12,7 @@ const app = express();
 //set up middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//app.use(express.static('public'));
+app.use(express.static('./Develop/public'));
 
 //connect to mongodb
 mongoose.connect(process.env.mongodb_uri || 'mongodb://localhost/fitnessTracker', 
