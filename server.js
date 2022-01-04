@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 3002;
 
-const htmlRoutes = require('./routes/htmlroutes');
-const apiRoutes = require('./routes/apiroutes');
+const htmlRoutes = require('./Develop/routes/html');
+const apiRoutes = require('./Develop/routes/api');
 
 //set up express to variable
 const app = express();
@@ -25,7 +25,7 @@ mongoose.connect(process.env.mongodb_uri || 'mongodb://localhost/fitnessTracker'
 );
 
 // import routes
-app.use('/api', fitness);
+app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
 //start server
