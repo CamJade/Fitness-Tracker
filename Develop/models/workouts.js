@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
   
 
-//add schema- weight for resistance and duration of workouts
+//add schema- add your exercise
 const workoutSchema = new Schema ({
     date: {
         type: Date,
@@ -22,14 +22,35 @@ const workoutSchema = new Schema ({
         trim: true,
         required: "Name of exercise?"
     },
+    distance: {
+        type: Number,
+        required: function() {
+          return (this.type === 'cardio' ? 'Enter distance(miles) of cardio workout' : false);
+        }
+      },
       weight: {
         type: Number,
-        required: "Enter weight used for this workout(lbs)"
+        required: function() {
+            return (this.type === 'resistance' ? 'Enter weight(lbs) for resistance workout' : false);
+          
+        }
       },
       duration: {
         type: Number,
         required: "Enter duration of exercise(min)"
     },
+    sets: {
+        type: Number,
+        required: function() {
+          return (this.type === 'resistance' ? 'Enter number of sets' : false);
+        }
+      },
+      reps: {
+        type: Number,
+        required: function() {
+          return (this.type === 'resistance' ? 'Enter number of reps' : false);
+        }
+      }
       
 
 });
